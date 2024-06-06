@@ -1,0 +1,48 @@
+/* src/App.css */
+.app {
+  display: flex;
+}
+
+.main-content {
+  margin-left: 60px; /* Ajuste conforme a largura da barra lateral */
+  flex: 1;
+  padding: 20px;
+}
+
+.add-candidate-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.add-candidate {
+  padding: 20px;
+}
+
+.add-candidate form {
+  display: flex;
+  flex-direction: column;
+}
+
+.add-candidate input {
+  margin-bottom: 10px;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.add-candidate button {
+  padding: 10px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+}

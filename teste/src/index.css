@@ -1,0 +1,47 @@
+/* src/index.css */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: #333;
+  color: white;
+}
+
+.filter {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.filter button {
+  margin: 0 10px;
+}
+
+.candidates-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.candidate-card {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 10px;
+  width: 200px;
+  text-align: center;
+  background-color: white;
+}
+
+.candidate-card img {
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+}

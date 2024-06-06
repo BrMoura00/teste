@@ -1,0 +1,54 @@
+/* src/components/Sidebar.css */
+.sidebar {
+  height: 100vh;
+  width: 60px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #007bff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20px;
+}
+
+.sidebar a {
+  color: white;
+  text-decoration: none;
+  margin: 20px 0;
+  font-size: 24px;
+}
+
+.sidebar a.active {
+  background-color: #0056b3;
+  border-radius: 10px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon-home::before {
+  content: "\1F3E0";
+}
+
+.icon-users::before {
+  content: "\1F465";
+}
+
+.icon-calendar::before {
+  content: "\1F4C5";
+}
+
+.icon-messages::before {
+  content: "\1F4AC";
+}
+
+.icon-profile::before {
+  content: "\1F464";
+}
+
+.icon-settings::before {
+  content: "\2699";
+}
