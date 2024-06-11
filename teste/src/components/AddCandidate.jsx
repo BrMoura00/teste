@@ -27,7 +27,7 @@ const AddCandidate = ({ addCandidate }) => {
   };
 
   return (
-    <div className="add-candidate">
+    <div className="form-container">
       <h2>Add New Candidate</h2>
       <form onSubmit={handleSubmit}>
         <input
