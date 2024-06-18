@@ -4,6 +4,9 @@ import { useParams, useNavigate } from 'react-router-dom';
 const AddExam = ({ addExam }) => {
   const { patientId } = useParams();
   const [examData, setExamData] = useState({
+    name: '',
+    age: '',
+    gender: '',
     anamnesis: '',
     meemsTest: '',
     medications: '',
@@ -42,6 +45,10 @@ const AddExam = ({ addExam }) => {
     treatmentProgram: '',
   });
 
+  const [sheets, setSheets] = useState([
+    { name: 'Planilha 1', rows: [{ joint: '', movement: '', right: '', left: '' }] }
+  ]);
+
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -49,11 +56,47 @@ const AddExam = ({ addExam }) => {
     setExamData({ ...examData, [name]: value });
   };
 
+  const handleRowChange = (sheetIndex, rowIndex, e) => {
+    const { name, value } = e.target;
+    const newSheets = [...sheets];
+    newSheets[sheetIndex].rows[rowIndex][name] = value;
+    setSheets(newSheets);
+  };
+
+  const addRow = (sheetIndex) => {
+    const newSheets = [...sheets];
+    newSheets[sheetIndex].rows.push({ joint: '', movement: '', right: '', left: '' });
+    setSheets(newSheets);
+  };
+
+  const removeRow = (sheetIndex, rowIndex) => {
+    const newSheets = [...sheets];
+    newSheets[sheetIndex].rows = newSheets[sheetIndex].rows.filter((_, i) => i !== rowIndex);
+    setSheets(newSheets);
+  };
+
+  const addSheet = () => {
+    setSheets([...sheets, { name: `Planilha ${sheets.length + 1}`, rows: [{ joint: '', movement: '', right: '', left: '' }] }]);
+  };
+
+  const removeSheet = (sheetIndex) => {
+    const newSheets = sheets.filter((_, i) => i !== sheetIndex);
+    setSheets(newSheets);
+  };
+
+  const handleSheetNameChange = (sheetIndex, e) => {
+    const { value } = e.target;
+    const newSheets = [...sheets];
+    newSheets[sheetIndex].name = value;
+    setSheets(newSheets);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const newExam = {
       id: Date.now(),
       ...examData,
+      physicalExam: sheets,
     };
     addExam(parseInt(patientId), newExam);
     navigate(`/patient/${patientId}`);
@@ -98,6 +141,54 @@ const AddExam = ({ addExam }) => {
         <textarea name="palpation" value={examData.palpation} onChange={handleChange}></textarea>
         <label>ACALIAÇÃO SENSORIAL - Propriocepção (Senso de Posição Articular):</label>
         <textarea name="proprioceptionAssessment" value={examData.proprioceptionAssessment} onChange={handleChange}></textarea>
+
+        <h4>Planilhas de Exame Físico</h4>
+        {sheets.map((sheet, sheetIndex) => (
+          <div key={sheetIndex} className="physical-exam-sheet">
+            <input
+              type="text"
+              value={sheet.name}
+              onChange={(e) => handleSheetNameChange(sheetIndex, e)}
+              placeholder="Nome da Planilha"
+            />
+            <button type="button" onClick={() => removeSheet(sheetIndex)}>Remover Planilha</button>
+            {sheet.rows.map((row, rowIndex) => (
+              <div key={rowIndex} className="physical-exam-row">
+                <input
+                  type="text"
+                  name="joint"
+                  placeholder="Articulação"
+                  value={row.joint}
+                  onChange={(e) => handleRowChange(sheetIndex, rowIndex, e)}
+                />
+                <input
+                  type="text"
+                  name="movement"
+                  placeholder="Movimento"
+                  value={row.movement}
+                  onChange={(e) => handleRowChange(sheetIndex, rowIndex, e)}
+                />
+                <input
+                  type="text"
+                  name="right"
+                  placeholder="Direito"
+                  value={row.right}
+                  onChange={(e) => handleRowChange(sheetIndex, rowIndex, e)}
+                />
+                <input
+                  type="text"
+                  name="left"
+                  placeholder="Esquerdo"
+                  value={row.left}
+                  onChange={(e) => handleRowChange(sheetIndex, rowIndex, e)}
+                />
+                <button type="button" onClick={() => removeRow(sheetIndex, rowIndex)}>Remover</button>
+              </div>
+            ))}
+            <button type="button" onClick={() => addRow(sheetIndex)}>Adicionar Linha</button>
+          </div>
+        ))}
+        <button type="button" onClick={addSheet}>Adicionar Nova Planilha</button>
 
         <h3>Comprimento Muscular</h3>
         <textarea name="muscleLength" value={examData.muscleLength} onChange={handleChange}></textarea>
