@@ -14,7 +14,7 @@ const AddPatient = ({ addPatient }) => {
       id: Date.now(),
       name,
       age,
-      gender,
+      gender, 
       image,
     };
     addPatient(newPatient);

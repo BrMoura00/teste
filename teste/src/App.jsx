@@ -4,6 +4,7 @@ import PatientsList from './components/PatientsList';
 import AddPatient from './components/AddPatient';
 import PatientDetail from './components/PatientDetail';
 import AddExam from './components/AddExam';
+import CustomCalendar from './components/CustomCalendar';
 import Sidebar from './components/Sidebar';
 import SearchBar from './components/SearchBar';
 import ConfirmModal from './components/ConfirmModal';
@@ -16,6 +17,7 @@ const initialPatients = [
     name: 'John Doe',
     age: 30,
     gender: 'male',
+    date: new Date(),
     exams: [],
   },
   {
@@ -24,6 +26,7 @@ const initialPatients = [
     name: 'Jane Smith',
     age: 25,
     gender: 'female',
+    date: new Date(),
     exams: [],
   },
 ];
@@ -60,7 +63,7 @@ const App = () => {
 
   const addExam = (patientId, exam) => {
     setPatients(
-      patients.map(patient => 
+      patients.map(patient =>
         patient.id === patientId ? { ...patient, exams: [...(patient.exams || []), exam] } : patient
       )
     );
@@ -108,6 +111,7 @@ const App = () => {
           <Route path="/add-patient" element={<AddPatient addPatient={addPatient} />} />
           <Route path="/patient/:id" element={<PatientDetail patients={patients} updatePatient={updatePatient} deletePatient={deletePatient} />} />
           <Route path="/patient/:patientId/add-exam" element={<AddExam addExam={addExam} />} />
+          <Route path="/calendar" element={<CustomCalendar patients={patients} addPatient={addPatient} />} />
         </Routes>
         <Link to="/add-patient">
           <button className="add-patient-button">Add</button>
