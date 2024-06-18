@@ -1,8 +1,7 @@
-// src/components/CandidatesList.jsx
 import React from 'react';
-import CandidateCard from './CandidateCard';
+import PatientCard from './PatientCard';
 
-const CandidatesList = ({ candidates, isSelectionMode, selectedIds, setSelectedIds, onDeleteSelected }) => {
+const PatientsList = ({ patients, isSelectionMode, selectedIds, setSelectedIds, onDeleteSelected }) => {
   const handleSelect = (id) => {
     setSelectedIds((prevSelectedIds) =>
       prevSelectedIds.includes(id)
@@ -12,7 +11,7 @@ const CandidatesList = ({ candidates, isSelectionMode, selectedIds, setSelectedI
   };
 
   return (
-    <div className="candidates-list">
+    <div className="patients-list">
       {isSelectionMode && (
         <button
           className="delete-selected-button"
@@ -22,11 +21,11 @@ const CandidatesList = ({ candidates, isSelectionMode, selectedIds, setSelectedI
           Delete Selected
         </button>
       )}
-      {candidates.map((candidate) => (
-        <CandidateCard
-          key={candidate.id}
-          candidate={candidate}
-          isSelected={selectedIds.includes(candidate.id)}
+      {patients.map((patient) => (
+        <PatientCard
+          key={patient.id}
+          patient={patient}
+          isSelected={selectedIds.includes(patient.id)}
           onSelect={handleSelect}
           isSelectionMode={isSelectionMode}
         />
@@ -35,4 +34,4 @@ const CandidatesList = ({ candidates, isSelectionMode, selectedIds, setSelectedI
   );
 };
 
-export default CandidatesList;
+export default PatientsList;
