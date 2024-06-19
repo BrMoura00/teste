@@ -6,10 +6,13 @@ import PatientDetail from './components/PatientDetail';
 import AddExam from './components/AddExam';
 import CustomCalendar from './components/CustomCalendar';
 import ExamDetail from './components/ExamDetail';
-import ExerciseList from './components/ExerciseList'; // Import ExerciseList
+import ExerciseList from './components/ExerciseList';
 import Sidebar from './components/Sidebar';
 import SearchBar from './components/SearchBar';
 import ConfirmModal from './components/ConfirmModal';
+import Login from './components/Login';
+import Register from './components/Register';
+import PrivateRoute from './components/PrivateRoute';
 import './App.css';
 
 const initialPatients = [
@@ -34,6 +37,17 @@ const initialPatients = [
 ];
 
 const App = () => {
+  useEffect(() => {
+    const storedUser = localStorage.getItem('user');
+    if (!storedUser) {
+      const defaultUser = {
+        username: 'admin',
+        password: 'admin123'
+      };
+      localStorage.setItem('user', JSON.stringify(defaultUser));
+    }
+  }, []);
+
   const [patients, setPatients] = useState(() => {
     const savedPatients = localStorage.getItem('patients');
     return savedPatients ? JSON.parse(savedPatients) : initialPatients;
@@ -87,45 +101,58 @@ const App = () => {
 
   return (
     <div className="app">
-      <Sidebar />
-      <div className="main-content">
-        <SearchBar setSearchTerm={setSearchTerm} />
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <>
-                <div className="filters">
-                  <button onClick={() => setIsSelectionMode(!isSelectionMode)}>
-                    {isSelectionMode ? 'Cancel' : 'Selection Mode'}
-                  </button>
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route
+          path="*"
+          element={
+            <PrivateRoute>
+              <div className="main-content">
+                <Sidebar />
+                <div className="content">
+                  <SearchBar setSearchTerm={setSearchTerm} />
+                  <Routes>
+                    <Route
+                      path="/"
+                      element={
+                        <>
+                          <div className="filters">
+                            <button onClick={() => setIsSelectionMode(!isSelectionMode)}>
+                              {isSelectionMode ? 'Cancel' : 'Selection Mode'}
+                            </button>
+                          </div>
+                          <PatientsList
+                            patients={filteredPatients}
+                            isSelectionMode={isSelectionMode}
+                            selectedIds={selectedIds}
+                            setSelectedIds={setSelectedIds}
+                            onDeleteSelected={handleDeleteSelected}
+                          />
+                        </>
+                      }
+                    />
+                    <Route path="/add-patient" element={<AddPatient addPatient={addPatient} />} />
+                    <Route path="/patient/:id" element={<PatientDetail patients={patients} updatePatient={updatePatient} deletePatient={deletePatient} />} />
+                    <Route path="/patient/:patientId/add-exam" element={<AddExam addExam={addExam} />} />
+                    <Route path="/patient/:patientId/exam/:examId" element={<ExamDetail patients={patients} />} />
+                    <Route path="/calendar" element={<CustomCalendar patients={patients} addPatient={addPatient} />} />
+                    <Route path="/exercises" element={<ExerciseList />} />
+                  </Routes>
+                  <Link to="/add-patient">
+                    <button className="add-patient-button">Add</button>
+                  </Link>
                 </div>
-                <PatientsList
-                  patients={filteredPatients}
-                  isSelectionMode={isSelectionMode}
-                  selectedIds={selectedIds}
-                  setSelectedIds={setSelectedIds}
-                  onDeleteSelected={handleDeleteSelected}
-                />
-              </>
-            }
-          />
-          <Route path="/add-patient" element={<AddPatient addPatient={addPatient} />} />
-          <Route path="/patient/:id" element={<PatientDetail patients={patients} updatePatient={updatePatient} deletePatient={deletePatient} />} />
-          <Route path="/patient/:patientId/add-exam" element={<AddExam addExam={addExam} />} />
-          <Route path="/patient/:patientId/exam/:examId" element={<ExamDetail patients={patients} />} />
-          <Route path="/calendar" element={<CustomCalendar patients={patients} addPatient={addPatient} />} />
-          <Route path="/exercises" element={<ExerciseList />} /> {/* Add ExerciseList Route */}
-        </Routes>
-        <Link to="/add-patient">
-          <button className="add-patient-button">Add</button>
-        </Link>
-      </div>
-      <ConfirmModal
-        show={showConfirmModal}
-        onClose={() => setShowConfirmModal(false)}
-        onConfirm={confirmDeleteSelected}
-      />
+              </div>
+              <ConfirmModal
+                show={showConfirmModal}
+                onClose={() => setShowConfirmModal(false)}
+                onConfirm={confirmDeleteSelected}
+              />
+            </PrivateRoute>
+          }
+        />
+      </Routes>
     </div>
   );
 };

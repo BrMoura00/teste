@@ -13,10 +13,10 @@ const Sidebar = () => {
       <NavLink to="/calendar" className={location.pathname === '/calendar' ? 'active' : ''}>
         <i className="icon-calendar"></i>
       </NavLink>
-      <NavLink to="/gym" className={location.pathname === '/gym' ? 'active' : ''}>
+      <NavLink to="/exercises" className={location.pathname === '/exercises' ? 'active' : ''}>
         <i className="icon-gym"></i>
       </NavLink>
-      <NavLink to="/exercises" className={location.pathname === '/exercises' ? 'active' : ''}>
+      <NavLink to="/running" className={location.pathname === '/running' ? 'active' : ''}>
         <i className="icon-running"></i>
       </NavLink>
     </div>
