@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Route, Routes, Link } from 'react-router-dom';
+import { Route, Routes, Link, useNavigate } from 'react-router-dom';
 import PatientsList from './components/PatientsList';
 import AddPatient from './components/AddPatient';
 import PatientDetail from './components/PatientDetail';
@@ -18,7 +18,7 @@ import './App.css';
 const initialPatients = [
   {
     id: 1,
-    image: 'https://via.placeholder.com/100',
+    image: '/assets/male.png',
     name: 'John Doe',
     age: 30,
     gender: 'male',
@@ -27,7 +27,7 @@ const initialPatients = [
   },
   {
     id: 2,
-    image: 'https://via.placeholder.com/100',
+    image: '/assets/female.png',
     name: 'Jane Smith',
     age: 25,
     gender: 'female',
@@ -57,9 +57,15 @@ const App = () => {
   const [selectedIds, setSelectedIds] = useState([]);
   const [showConfirmModal, setShowConfirmModal] = useState(false);
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     localStorage.setItem('patients', JSON.stringify(patients));
-  }, [patients]);
+    const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true';
+    if (!isAuthenticated) {
+      navigate('/login');
+    }
+  }, [patients, navigate]);
 
   const addPatient = (patient) => {
     setPatients([...patients, { ...patient, exams: [] }]);

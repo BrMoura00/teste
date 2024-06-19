@@ -5,17 +5,26 @@ const AddPatient = ({ addPatient }) => {
   const [name, setName] = useState('');
   const [age, setAge] = useState('');
   const [gender, setGender] = useState('');
-  const [image, setImage] = useState('');
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    let imageUrl;
+    if (gender === 'male') {
+      imageUrl = 'img63ed7613ddf030.75805827.jpg'; // URL da imagem para homem
+    } else if (gender === 'female') {
+      imageUrl = '346401489780673.jpg'; // URL da imagem para mulher
+    } else {
+      imageUrl = '/assets/621bbbd5217e5.jpeg'; // URL da imagem para outro gênero
+    }
+
     const newPatient = {
       id: Date.now(),
       name,
       age,
-      gender, 
-      image,
+      gender,
+      image: imageUrl,
+      exams: [],
     };
     addPatient(newPatient);
     navigate('/');
@@ -23,36 +32,29 @@ const AddPatient = ({ addPatient }) => {
 
   return (
     <div className="form-container">
-      <h2>Add New Patient</h2>
+      <h2>Adicionar Paciente</h2>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
-          placeholder="Name"
+          placeholder="Nome"
           value={name}
           onChange={(e) => setName(e.target.value)}
           required
         />
         <input
           type="number"
-          placeholder="Age"
+          placeholder="Idade"
           value={age}
           onChange={(e) => setAge(e.target.value)}
           required
         />
         <select value={gender} onChange={(e) => setGender(e.target.value)} required>
-          <option value="" disabled>Select Gender</option>
-          <option value="male">Male</option>
-          <option value="female">Female</option>
-          <option value="other">Other</option>
+          <option value="" disabled>Selecionar Gênero</option>
+          <option value="male">Masculino</option>
+          <option value="female">Feminino</option>
+          <option value="other">Outro</option>
         </select>
-        <input
-          type="text"
-          placeholder="Image URL"
-          value={image}
-          onChange={(e) => setImage(e.target.value)}
-          required
-        />
-        <button type="submit">Add Patient</button>
+        <button type="submit">Adicionar Paciente</button>
       </form>
     </div>
   );
