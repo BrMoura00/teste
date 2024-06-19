@@ -12,7 +12,7 @@ const PatientDetail = ({ patients, updatePatient, deletePatient }) => {
   const [showConfirmModal, setShowConfirmModal] = useState(false);
 
   if (!patient) {
-    return <div>Patient not found</div>;
+    return <div>Paciente não encontrado</div>;
   }
 
   const [name, setName] = useState(patient.name);
@@ -46,60 +46,66 @@ const PatientDetail = ({ patients, updatePatient, deletePatient }) => {
     navigate('/');
   };
 
+  const handleViewExam = () => {
+    if (selectedExamId) {
+      navigate(`/patient/${patient.id}/exam/${selectedExamId}`);
+    }
+  };
+
   return (
     <div className="form-container">
       {isEditing ? (
         <>
-          <h2>Edit Patient</h2>
+          <h2>Editar Paciente</h2>
           <form onSubmit={handleSubmit}>
             <input
               type="text"
-              placeholder="Name"
+              placeholder="Nome"
               value={name}
               onChange={(e) => setName(e.target.value)}
               required
             />
             <input
               type="number"
-              placeholder="Age"
+              placeholder="Idade"
               value={age}
               onChange={(e) => setAge(e.target.value)}
               required
             />
             <select value={gender} onChange={(e) => setGender(e.target.value)} required>
-              <option value="" disabled>Select Gender</option>
-              <option value="male">Male</option>
-              <option value="female">Female</option>
-              <option value="other">Other</option>
+              <option value="" disabled>Selecione o Gênero</option>
+              <option value="male">Masculino</option>
+              <option value="female">Feminino</option>
+              <option value="other">Outro</option>
             </select>
             <div className="image-input-container">
               <input
                 type="text"
-                placeholder="Image URL"
+                placeholder="URL da Imagem"
                 value={image}
                 onChange={(e) => setImage(e.target.value)}
                 required
               />
-              <img src={image} alt="Patient" className="patient-image-preview" />
+              <img src={image} alt="Paciente" className="patient-image-preview" />
             </div>
-            <button type="submit">Update Patient</button>
+            <button type="submit">Atualizar Paciente</button>
           </form>
         </>
       ) : (
         <>
-          <h2>Patient Details</h2>
+          <h2>Detalhes do Paciente</h2>
           <div className="patient-detail-view">
             <img src={patient.image} alt={patient.name} className="patient-image-preview" />
             <h3>{patient.name}</h3>
-            <p><strong>Age:</strong> {patient.age}</p>
-            <p><strong>Gender:</strong> {patient.gender}</p>
+            <p><strong>Idade:</strong> {patient.age}</p>
+            <p><strong>Gênero:</strong> {patient.gender}</p>
           </div>
           <div className="exams-section">
-            <h3>Exams</h3>
+            <h3>Exames</h3>
             {patient.exams && patient.exams.length > 0 ? (
               <div>
                 <select onChange={(e) => setSelectedExamId(e.target.value)} value={selectedExamId}>
-                  <option value="" disabled>Select Exam</option>
+                  <option value="" disabled>Selecione um Exame</option>
                   {patient.exams.map(exam => (
                     <option key={exam.id} value={exam.id}>
                       {exam.examType} - {exam.date}
@@ -110,26 +116,23 @@ const PatientDetail = ({ patients, updatePatient, deletePatient }) => {
                   <div className="exam-details">
                     {patient.exams.filter(exam => exam.id === parseInt(selectedExamId)).map(exam => (
                       <div key={exam.id}>
-                        <p><strong>Type:</strong> {exam.examType}</p>
-                        <p><strong>Date:</strong> {exam.date}</p>
-                        <p><strong>Result:</strong> {exam.result}</p>
-                        <Link to={`/patient/${patient.id}/exam/${exam.id}`}>
-                          <button className="view-exam-button">View Exam</button>
-                        </Link>
+                        <p><strong>Tipo:</strong> {exam.examType}</p>
+                        <p><strong>Data:</strong> {exam.date}</p>
+                        <button onClick={handleViewExam}>Visualizar Exame</button>
                       </div>
                     ))}
                   </div>
                 )}
               </div>
             ) : (
-              <p>No exams found.</p>
+              <p>Nenhum exame encontrado.</p>
             )}
             <Link to={`/patient/${patient.id}/add-exam`}>
-              <button className="add-exam-button">Add Exam</button>
+              <button className="add-exam-button">Adicionar Exame</button>
             </Link>
           </div>
-          <button onClick={handleEditClick} className="edit-button">Edit</button>
-          <button onClick={handleDeleteClick} className="delete-button">Delete</button>
+          <button onClick={handleEditClick} className="edit-button">Editar</button>
+          <button onClick={handleDeleteClick} className="delete-button">Excluir</button>
         </>
       )}
       <ConfirmModal
@@ -142,3 +145,4 @@ const PatientDetail = ({ patients, updatePatient, deletePatient }) => {
 };
 
 export default PatientDetail;
+  

@@ -4,9 +4,8 @@ import { useParams, useNavigate } from 'react-router-dom';
 const AddExam = ({ addExam }) => {
   const { patientId } = useParams();
   const [examData, setExamData] = useState({
-    name: '',
-    age: '',
-    gender: '',
+    examType: '',
+    date: '',
     anamnesis: '',
     meemsTest: '',
     medications: '',
@@ -106,13 +105,22 @@ const AddExam = ({ addExam }) => {
     <div className="form-container">
       <h2>Adicionar Exame</h2>
       <form onSubmit={handleSubmit}>
-        <h3>Dados Pessoais</h3>
-        <label>Nome:</label>
-        <input type="text" name="name" value={examData.name} onChange={handleChange} required />
-        <label>Idade:</label>
-        <input type="text" name="age" value={examData.age} onChange={handleChange} required />
-        <label>Gênero:</label>
-        <input type="text" name="gender" value={examData.gender} onChange={handleChange} required />
+        <label>Tipo de Exame:</label>
+        <input
+          type="text"
+          name="examType"
+          value={examData.examType}
+          onChange={handleChange}
+          required
+        />
+        <label>Data:</label>
+        <input
+          type="date"
+          name="date"
+          value={examData.date}
+          onChange={handleChange}
+          required
+        />
 
         <h3>ANAMNESE</h3>
         <textarea name="anamnesis" value={examData.anamnesis} onChange={handleChange}></textarea>
