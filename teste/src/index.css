@@ -1,205 +1,76 @@
-/* src/index.css */
+@tailwind base;
+  @tailwind components;
+  @tailwind utilities;
 
-/* Estilo para os formulários */
-.form-container {
-  max-width: 600px;
-  margin: 20px auto;
-  padding: 20px;
-  background-color: white;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
+  @layer base {
+    :root {
+      --background: 0 0% 100%;
+      --foreground: 222.2 84% 4.9%;
 
-.form-container h2 {
-  text-align: center;
-  margin-bottom: 20px;
-  color: #333;
-}
+      --card: 0 0% 100%;
+      --card-foreground: 222.2 84% 4.9%;
 
-.form-container form {
-  display: flex;
-  flex-direction: column;
-}
+      --popover: 0 0% 100%;
+      --popover-foreground: 222.2 84% 4.9%;
 
-.form-container input,
-.form-container select {
-  margin-bottom: 10px;
-  padding: 10px;
-  font-size: 16px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-}
+      --primary: 222.2 47.4% 11.2%;
+      --primary-foreground: 210 40% 98%;
 
-.image-input-container {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
+      --secondary: 210 40% 96.1%;
+      --secondary-foreground: 222.2 47.4% 11.2%;
 
-.candidate-image-preview {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  object-fit: cover;
-}
+      --muted: 210 40% 96.1%;
+      --muted-foreground: 215.4 16.3% 46.9%;
 
-.form-container button {
-  padding: 10px;
-  font-size: 16px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
+      --accent: 210 40% 96.1%;
+      --accent-foreground: 222.2 47.4% 11.2%;
 
-.form-container button:hover {
-  background-color: #0056b3;
-}
+      --destructive: 0 84.2% 60.2%;
+      --destructive-foreground: 210 40% 98%;
 
-/* Estilo para a visualização dos detalhes */
-.candidate-detail-view {
-  text-align: center;
-}
+      --border: 214.3 31.8% 91.4%;
+      --input: 214.3 31.8% 91.4%;
+      --ring: 222.2 84% 4.9%;
 
-.candidate-detail-view img {
-  border-radius: 50%;
-  width: 100px;
-  height: 100px;
-  object-fit: cover;
-  margin-bottom: 10px;
-}
+      --radius: 0.5rem;
+    }
 
-.candidate-detail-view h3 {
-  margin: 10px 0;
-  font-size: 24px;
-  color: #333;
-}
+    .dark {
+      --background: 222.2 84% 4.9%;
+      --foreground: 210 40% 98%;
 
-.candidate-detail-view p {
-  margin: 5px 0;
-  color: #666;
-  font-size: 18px;
-}
+      --card: 222.2 84% 4.9%;
+      --card-foreground: 210 40% 98%;
 
-.edit-button {
-  margin-top: 20px;
-  padding: 10px;
-  font-size: 16px;
-  background-color: #28a745;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
+      --popover: 222.2 84% 4.9%;
+      --popover-foreground: 210 40% 98%;
 
-.edit-button:hover {
-  background-color: #218838;
-}
+      --primary: 210 40% 98%;
+      --primary-foreground: 222.2 47.4% 11.2%;
 
-.delete-button {
-  margin-top: 20px;
-  margin-left: 10px;
-  padding: 10px;
-  font-size: 16px;
-  background-color: #dc3545;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
+      --secondary: 217.2 32.6% 17.5%;
+      --secondary-foreground: 210 40% 98%;
 
-.delete-button:hover {
-  background-color: #c82333;
-}
+      --muted: 217.2 32.6% 17.5%;
+      --muted-foreground: 215 20.2% 65.1%;
 
-/* Estilo para os cartões */
-.candidates-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-  padding: 20px;
-}
+      --accent: 217.2 32.6% 17.5%;
+      --accent-foreground: 210 40% 98%;
 
-.candidate-card {
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  padding: 20px;
-  margin: 10px;
-  width: 250px; /* Largura fixa para os cartões */
-  text-align: center;
-  background-color: white;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s;
-  text-decoration: none; /* Remove a sublinha dos links */
-  color: inherit; /* Herda a cor do texto */
-  position: relative;
-}
+      --destructive: 0 62.8% 30.6%;
+      --destructive-foreground: 210 40% 98%;
 
-.candidate-card.selected {
-  border-color: #007bff;
-}
+      --border: 217.2 32.6% 17.5%;
+      --input: 217.2 32.6% 17.5%;
+      --ring: 212.7 26.8% 83.9%;
+    }
+  }
 
-.candidate-card:hover {
-  transform: translateY(-5px);
-}
-
-.candidate-card img {
-  border-radius: 50%;
-  width: 100px;
-  height: 100px;
-  object-fit: cover;
-  margin-bottom: 10px;
-}
-
-.candidate-card h3 {
-  margin: 10px 0;
-  font-size: 18px;
-  color: #333; /* Cor do texto */
-}
-
-.candidate-card p {
-  margin: 5px 0;
-  color: #666;
-}
-
-.candidate-card a {
-  color: #333; /* Cor do texto clicável */
-  text-decoration: none;
-}
-
-.candidate-card a:hover {
-  text-decoration: underline;
-}
-
-.candidate-card input[type="checkbox"] {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-}
-
-.delete-selected-button {
-  padding: 10px;
-  font-size: 16px;
-  background-color: #dc3545;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-bottom: 20px;
-  transition: background-color 0.3s;
-}
-
-.delete-selected-button:hover {
-  background-color: #c82333;
-}
-
-.delete-selected-button:disabled {
-  background-color: #e0e0e0;
-  cursor: not-allowed;
-}
+  @layer base {
+    * {
+      @apply border-border;
+    }
+    body {
+      @apply bg-background text-foreground;
+    }
+  }

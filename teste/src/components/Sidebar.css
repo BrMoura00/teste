@@ -9,6 +9,15 @@
   flex-direction: column;
   align-items: center;
   padding-top: 20px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.sidebar.closed {
+  transform: translateX(-100%);
+}
+
+.sidebar.open {
+  transform: translateX(0);
 }
 
 .sidebar a {
@@ -42,4 +51,20 @@
 
 .icon-running::before {
   content: "\1F3C3"; /* Unicode para o ícone de boneco correndo */
+}
+
+.toggle-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.sidebar.closed .toggle-button {
+  position: absolute;
+  top: 20px;
+  left: 60px;
 }
