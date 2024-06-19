@@ -113,6 +113,9 @@ const PatientDetail = ({ patients, updatePatient, deletePatient }) => {
                         <p><strong>Type:</strong> {exam.examType}</p>
                         <p><strong>Date:</strong> {exam.date}</p>
                         <p><strong>Result:</strong> {exam.result}</p>
+                        <Link to={`/patient/${patient.id}/exam/${exam.id}`}>
+                          <button className="view-exam-button">View Exam</button>
+                        </Link>
                       </div>
                     ))}
                   </div>

@@ -173,3 +173,44 @@
 .physical-exam-row button:hover, .physical-exam-sheet button:hover {
   background-color: #c82333;
 }
+.exam-detail-view {
+  background: #f9f9f9;
+  padding: 20px;
+  margin-top: 10px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.exam-detail-view h3 {
+  margin-top: 0;
+}
+
+.physical-exam-sheet {
+  margin-bottom: 20px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f0f0f0;
+}
+
+.physical-exam-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.back-button {
+  padding: 10px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background-color 0.3s;
+}
+
+.back-button:hover {
+  background-color: #0056b3;
+}
