@@ -5,7 +5,8 @@ import AddPatient from './components/AddPatient';
 import PatientDetail from './components/PatientDetail';
 import AddExam from './components/AddExam';
 import CustomCalendar from './components/CustomCalendar';
-import ExamDetail from './components/ExamDetail'; // Import ExamDetail
+import ExamDetail from './components/ExamDetail';
+import ExerciseList from './components/ExerciseList'; // Import ExerciseList
 import Sidebar from './components/Sidebar';
 import SearchBar from './components/SearchBar';
 import ConfirmModal from './components/ConfirmModal';
@@ -112,8 +113,9 @@ const App = () => {
           <Route path="/add-patient" element={<AddPatient addPatient={addPatient} />} />
           <Route path="/patient/:id" element={<PatientDetail patients={patients} updatePatient={updatePatient} deletePatient={deletePatient} />} />
           <Route path="/patient/:patientId/add-exam" element={<AddExam addExam={addExam} />} />
-          <Route path="/patient/:patientId/exam/:examId" element={<ExamDetail patients={patients} />} /> {/* Add ExamDetail Route */}
+          <Route path="/patient/:patientId/exam/:examId" element={<ExamDetail patients={patients} />} />
           <Route path="/calendar" element={<CustomCalendar patients={patients} addPatient={addPatient} />} />
+          <Route path="/exercises" element={<ExerciseList />} /> {/* Add ExerciseList Route */}
         </Routes>
         <Link to="/add-patient">
           <button className="add-patient-button">Add</button>

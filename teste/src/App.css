@@ -173,6 +173,7 @@
 .physical-exam-row button:hover, .physical-exam-sheet button:hover {
   background-color: #c82333;
 }
+
 .exam-detail-view {
   background: #f9f9f9;
   padding: 20px;

@@ -16,7 +16,7 @@ const Sidebar = () => {
       <NavLink to="/gym" className={location.pathname === '/gym' ? 'active' : ''}>
         <i className="icon-gym"></i>
       </NavLink>
-      <NavLink to="/running" className={location.pathname === '/running' ? 'active' : ''}>
+      <NavLink to="/exercises" className={location.pathname === '/exercises' ? 'active' : ''}>
         <i className="icon-running"></i>
       </NavLink>
     </div>
