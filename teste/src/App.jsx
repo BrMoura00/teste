@@ -1,3 +1,4 @@
+// src/App.js
 import React, { useState, useEffect } from 'react';
 import { Route, Routes, Link } from 'react-router-dom';
 import PatientsList from './components/PatientsList';
@@ -140,7 +141,7 @@ const App = () => {
                     <Route path="/exercises" element={<ExerciseList />} />
                   </Routes>
                   <Link to="/add-patient">
-                    <button className="add-patient-button">Add</button>
+                    <button className="add-patient-button">+</button>
                   </Link>
                 </div>
               </div>

@@ -6,9 +6,10 @@
   margin-left: 60px; /* Ajuste conforme a largura da barra lateral */
   flex: 1;
   padding: 20px;
+  position: relative;
 }
 
-.add-candidate-button {
+.add-patient-button {
   position: fixed;
   bottom: 20px;
   right: 20px;
@@ -19,7 +20,17 @@
   width: 60px;
   height: 60px;
   font-size: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.add-patient-button:hover {
+  background-color: #0056b3;
+  transform: scale(1.1);
 }
 
 .add-candidate {
