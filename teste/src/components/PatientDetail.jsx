@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import ConfirmModal from './ConfirmModal';
+import './PatientDetail.css';
 
 const PatientDetail = ({ patients, updatePatient, deletePatient }) => {
   const { id } = useParams();
@@ -145,4 +146,3 @@ const PatientDetail = ({ patients, updatePatient, deletePatient }) => {
 };
 
 export default PatientDetail;
-  

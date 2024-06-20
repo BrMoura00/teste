@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
+import './CustomCalendar.css';
 import AddPatient from './AddPatient';
 
 const CustomCalendar = ({ patients, addPatient }) => {
@@ -10,7 +11,7 @@ const CustomCalendar = ({ patients, addPatient }) => {
 
   const handleDateChange = (date) => {
     setDate(date);
-    setShowAddPatient(false);
+    setShowAddPatient(true);
     const patientsForDay = patients.filter(patient => {
       const patientDate = new Date(patient.date);
       return (
@@ -25,7 +26,6 @@ const CustomCalendar = ({ patients, addPatient }) => {
   const handleAddPatient = (patient) => {
     addPatient({ ...patient, date });
     setShowAddPatient(false);
-    handleDateChange(date); // Atualiza a lista de pacientes do dia
   };
 
   const tileContent = ({ date, view }) => {
@@ -53,7 +53,6 @@ const CustomCalendar = ({ patients, addPatient }) => {
         value={date}
         tileContent={tileContent}
       />
-      <button onClick={() => setShowAddPatient(true)}>Adicionar Paciente</button>
       {showAddPatient && <AddPatient addPatient={handleAddPatient} />}
       <div className="patients-list">
         <h3>Pacientes para {date.toLocaleDateString()}</h3>
