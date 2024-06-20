@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import './AddPatient.css';
+import man from '../assets/man.png';
+import notman from '../assets/notman.png';
+import unknow from '../assets/unknow.png';
 
 const AddPatient = ({ addPatient }) => {
   const [name, setName] = useState('');
@@ -11,11 +15,11 @@ const AddPatient = ({ addPatient }) => {
     e.preventDefault();
     let imageUrl;
     if (gender === 'male') {
-      imageUrl = 'img63ed7613ddf030.75805827.jpg'; // URL da imagem para homem
+      imageUrl = man; 
     } else if (gender === 'female') {
-      imageUrl = '346401489780673.jpg'; // URL da imagem para mulher
+      imageUrl = notman; 
     } else {
-      imageUrl = '/assets/621bbbd5217e5.jpeg'; // URL da imagem para outro gênero
+      imageUrl = unknow;
     }
 
     const newPatient = {

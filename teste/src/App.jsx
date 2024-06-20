@@ -124,7 +124,10 @@ const App = () => {
                       element={
                         <>
                           <div className="filters">
-                            <button onClick={() => setIsSelectionMode(!isSelectionMode)}>
+                            <button
+                              className={`selection-mode-button ${isSelectionMode ? 'active' : ''}`}
+                              onClick={() => setIsSelectionMode(!isSelectionMode)}
+                            >
                               {isSelectionMode ? 'Cancel' : 'Selection Mode'}
                             </button>
                           </div>

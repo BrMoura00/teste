@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import './AddExam.css';
 
 const AddExam = ({ addExam }) => {
   const { patientId } = useParams();
@@ -159,7 +160,7 @@ const AddExam = ({ addExam }) => {
               onChange={(e) => handleSheetNameChange(sheetIndex, e)}
               placeholder="Nome da Planilha"
             />
-            <button type="button" onClick={() => removeSheet(sheetIndex)}>Remover Planilha</button>
+            <button type="button" className="remove-button" onClick={() => removeSheet(sheetIndex)}>Remover Planilha</button>
             {sheet.rows.map((row, rowIndex) => (
               <div key={rowIndex} className="physical-exam-row">
                 <input
@@ -190,10 +191,10 @@ const AddExam = ({ addExam }) => {
                   value={row.left}
                   onChange={(e) => handleRowChange(sheetIndex, rowIndex, e)}
                 />
-                <button type="button" onClick={() => removeRow(sheetIndex, rowIndex)}>Remover</button>
+                <button type="button" className="remove-button" onClick={() => removeRow(sheetIndex, rowIndex)}>Remover</button>
               </div>
             ))}
-            <button type="button" onClick={() => addRow(sheetIndex)}>Adicionar Linha</button>
+            <button type="button" className="add-row-button" onClick={() => addRow(sheetIndex)}>Adicionar Linha</button>
           </div>
         ))}
         <button type="button" onClick={addSheet}>Adicionar Nova Planilha</button>

@@ -1,0 +1,118 @@
+.form-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .form-container h2, .form-container h3, .form-container h4 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .form-container form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-container label {
+    margin-top: 10px;
+    margin-bottom: 5px;
+    color: #666;
+  }
+  
+  .form-container input, .form-container textarea {
+    margin-bottom: 10px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: calc(100% - 22px); /* Espaço para padding e border */
+  }
+  
+  .form-container button {
+    padding: 10px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s;
+  }
+  
+  .form-container button:hover {
+    background-color: #0056b3;
+  }
+  
+  .physical-exam-sheet {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
+  
+  .physical-exam-sheet input {
+    margin-bottom: 10px;
+    width: calc(100% - 22px); /* Espaço para padding e border */
+  }
+  
+  .physical-exam-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .physical-exam-row input {
+    flex: 1;
+  }
+  
+  .physical-exam-row button, .physical-exam-sheet .remove-button {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+    margin-bottom: 5px;
+  }
+  
+  .physical-exam-row button:hover, .physical-exam-sheet .remove-button:hover {
+    background-color: #c82333;
+  }
+  
+  .physical-exam-sheet .add-row-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  .physical-exam-sheet .add-row-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .back-button {
+    padding: 10px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s;
+  }
+  
+  .back-button:hover {
+    background-color: #0056b3;
+  }
+  

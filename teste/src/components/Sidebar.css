@@ -10,14 +10,11 @@
   align-items: center;
   padding-top: 20px;
   transition: width 0.3s;
+  overflow: hidden;
 }
 
 .sidebar.open {
-  width: 200px;
-}
-
-.sidebar.closed {
-  width: 60px;
+  width: 200px; /* Largura expandida */
 }
 
 .sidebar a {
@@ -25,22 +22,35 @@
   text-decoration: none;
   margin: 20px 0;
   font-size: 24px;
+  display: flex;
+  align-items: center;
+  transition: margin 0.3s, color 0.3s;
 }
 
-.sidebar a.active {
-  background-color: #0056b3;
-  border-radius: 10px;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.sidebar a .icon {
+  margin-right: 10px;
+}
+
+.sidebar a span {
+  display: none;
+  font-size: 18px;
+  color: white;
+  margin-left: 10px;
+}
+
+.sidebar.open a span {
+  display: inline;
 }
 
 .toggle-button {
-  background: none;
-  border: none;
+  background-color: transparent;
   color: white;
+  border: none;
   cursor: pointer;
   margin-bottom: 20px;
+  transition: background-color 0.3s;
+}
+
+.toggle-button:hover {
+  color: #ddd;
 }
