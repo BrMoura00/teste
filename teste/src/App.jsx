@@ -164,6 +164,3 @@ const App = () => {
 };
 
 export default App;
-
-
-// dsa

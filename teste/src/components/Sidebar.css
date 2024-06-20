@@ -9,6 +9,15 @@
   flex-direction: column;
   align-items: center;
   padding-top: 20px;
+  transition: width 0.3s;
+}
+
+.sidebar.open {
+  width: 200px;
+}
+
+.sidebar.closed {
+  width: 60px;
 }
 
 .sidebar a {
@@ -28,18 +37,10 @@
   align-items: center;
 }
 
-.icon-home::before {
-  content: "\1F3E0"; /* Unicode para o ícone de casa */
-}
-
-.icon-calendar::before {
-  content: "\1F4C5"; /* Unicode para o ícone de calendário */
-}
-
-.icon-gym::before {
-  content: "\1F4AA"; /* Unicode para o ícone de halter */
-}
-
-.icon-running::before {
-  content: "\1F3C3"; /* Unicode para o ícone de boneco correndo */
+.toggle-button {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  margin-bottom: 20px;
 }

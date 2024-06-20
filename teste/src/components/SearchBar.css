@@ -1,41 +1,48 @@
-/* src/components/SearchBar.css */
 .search-bar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-    background-color: #f8f9fa;
-    border-bottom: 1px solid #dee2e6;
-  }
-  
-  .search-bar h1 {
-    font-size: 24px;
-    margin: 0;
-  }
-  
-  .search-bar input[type="search"] {
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #dee2e6;
-    border-radius: 4px;
-    margin-right: 20px;
-  }
-  
-  .filters {
-    display: flex;
-    gap: 10px;
-  }
-  
-  .filters button {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    background-color: #e9ecef;
-    cursor: pointer;
-  }
-  
-  .filters button.active {
-    background-color: #007bff;
-    color: white;
-  }
-  
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.search-bar h1 {
+  font-size: 24px;
+  margin-right: 20px;
+}
+
+.search-bar input[type="search"] {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  margin-left: 10px;
+  transition: width 0.3s ease;
+}
+
+.search-bar .search-icon {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+}
+
+.search-bar .filters {
+  display: flex;
+  gap: 10px;
+  margin-left: auto;
+}
+
+.search-bar .filters button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  background-color: #e9ecef;
+  cursor: pointer;
+}
+
+.search-bar .filters button.active {
+  background-color: #007bff;
+  color: white;
+}

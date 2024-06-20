@@ -8,7 +8,7 @@
   padding: 20px;
 }
 
-.add-candidate-button {
+.add-patient-button {
   position: fixed;
   bottom: 20px;
   right: 20px;
@@ -22,197 +22,50 @@
   cursor: pointer;
 }
 
-.add-candidate {
+.patients-list {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
   padding: 20px;
 }
 
-.add-candidate form {
-  display: flex;
-  flex-direction: column;
-}
-
-.add-candidate input {
-  margin-bottom: 10px;
-  padding: 10px;
-  font-size: 16px;
-}
-
-.add-candidate button {
-  padding: 10px;
-  font-size: 16px;
-  background-color: #007bff;
-  color: white;
-  border: none;
+.patient-card {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 20px;
+  width: 250px;
+  text-align: center;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
   cursor: pointer;
 }
 
-.calendar-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.patient-card.selected {
+  border-color: #007bff;
 }
 
-.react-calendar {
-  width: 100%;
-  max-width: 500px;
-  background: white;
-  border: 1px solid #a0a096;
-  font-family: Arial, Helvetica, sans-serif;
-  line-height: 1.125em;
+.patient-card:hover {
+  transform: translateY(-5px);
 }
 
-.react-calendar__tile--active {
-  background: #007bff;
-  color: white;
-}
-
-.badge {
-  background-color: #007bff;
-  color: white;
+.patient-card img {
   border-radius: 50%;
-  padding: 5px 10px;
-  font-size: 12px;
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  margin-bottom: 10px;
 }
 
-.patients-list {
-  margin-top: 20px;
-  width: 100%;
-  max-width: 500px;
-}
-
-.patient-detail {
-  background: #f0f0f0;
-  padding: 10px;
-  margin: 5px 0;
-  border-radius: 5px;
-}
-
-/* Estilos para o formulário de adicionar exame */
-.form-container {
-  max-width: 800px;
-  margin: 20px auto;
-  padding: 20px;
-  background-color: white;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.form-container h2, .form-container h3, .form-container h4 {
-  text-align: center;
-  margin-bottom: 20px;
+.patient-card h3 {
+  margin: 10px 0;
+  font-size: 18px;
   color: #333;
 }
 
-.form-container form {
-  display: flex;
-  flex-direction: column;
-}
-
-.form-container label {
-  margin-top: 10px;
-  margin-bottom: 5px;
+.patient-card p {
+  margin: 5px 0;
   color: #666;
 }
-
-.form-container input, .form-container textarea {
-  margin-bottom: 10px;
-  padding: 10px;
-  font-size: 16px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  width: 100%;
-}
-
-.form-container button {
-  padding: 10px;
-  font-size: 16px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-top: 20px;
-  transition: background-color 0.3s;
-}
-
-.form-container button:hover {
-  background-color: #0056b3;
-}
-
-.physical-exam-sheet {
-  margin-bottom: 20px;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  background-color: #f9f9f9;
-}
-
-.physical-exam-sheet input {
-  margin-bottom: 10px;
-}
-
-.physical-exam-row {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 10px;
-}
-
-.physical-exam-row input {
-  flex: 1;
-}
-
-.physical-exam-row button, .physical-exam-sheet button {
-  background-color: #dc3545;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.physical-exam-row button:hover, .physical-exam-sheet button:hover {
-  background-color: #c82333;
-}
-
-.exam-detail-view {
-  background: #f9f9f9;
-  padding: 20px;
-  margin-top: 10px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.exam-detail-view h3 {
-  margin-top: 0;
-}
-
-.physical-exam-sheet {
-  margin-bottom: 20px;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  background-color: #f0f0f0;
-}
-
-.physical-exam-row {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 10px;
-}
-
-.back-button {
-  padding: 10px;
-  font-size: 16px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-top: 20px;
-  transition: background-color 0.3s;
-}
-
-.back-button:hover {
-  background-color: #0056b3;
-}
-
