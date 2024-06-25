@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { Search, Github, Settings, User, LifeBuoy, Moon } from 'lucide-react';
+import React, { useState } from 'react';
+import { Search, Github, Settings, User, LifeBuoy, Moon, List } from 'lucide-react';
 import { Button } from "@/components/ui/button";
+import { Link } from 'react-router-dom';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -10,24 +11,11 @@ import {
 } from "@/components/ui/dropdown-menu";
 import './SearchBar.css';
 
-const SearchBar = ({ setSearchTerm }) => {
+const SearchBar = ({ setSearchTerm, isSelectionMode, toggleSelectionMode }) => {
   const [expanded, setExpanded] = useState(false);
-  const [isDarkMode, setIsDarkMode] = useState(false);
-
-  useEffect(() => {
-    document.body.classList.toggle('dark-mode', isDarkMode);
-  }, [isDarkMode]);
 
   const handleSearchIconClick = () => {
     setExpanded(!expanded);
-  };
-
-  const toggleDarkMode = () => {
-    setIsDarkMode(!isDarkMode);
-  };
-
-  const handleGithubClick = () => {
-    window.location.href = "https://github.com/BrMoura00/teste.git";
   };
 
   return (
@@ -56,17 +44,21 @@ const SearchBar = ({ setSearchTerm }) => {
                 <Settings className="mr-2 h-4 w-4" />
                 <span>Settings</span>
               </DropdownMenuItem>
-              <DropdownMenuItem onClick={toggleDarkMode}>
+              <DropdownMenuItem onClick={toggleSelectionMode}>
+                <List className="mr-2 h-4 w-4" />
+                <span>{isSelectionMode ? 'Cancelar Modo de Seleção' : 'Ativar Modo de Seleção'}</span>
+              </DropdownMenuItem>
+              <DropdownMenuItem>
                 <Moon className="mr-2 h-4 w-4" />
                 <span>Modo Escuro</span>
               </DropdownMenuItem>
-              <DropdownMenuItem onClick={handleGithubClick}>
+              <DropdownMenuItem onClick={() => window.location.href = "https://github.com/BrMoura00/teste.git"}>
                 <Github className="mr-2 h-4 w-4" />
                 <span>GitHub</span>
               </DropdownMenuItem>
-              <DropdownMenuItem>
+              <DropdownMenuItem as={Link} to="/support">
                 <LifeBuoy className="mr-2 h-4 w-4" />
-                <span>Support</span>
+                <span>Suporte</span>
               </DropdownMenuItem>
             </DropdownMenuGroup>
           </DropdownMenuContent>

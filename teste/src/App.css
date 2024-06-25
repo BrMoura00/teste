@@ -76,7 +76,6 @@
   color: #666;
 }
 
-/* Estilo para o botão "Selection Mode" */
 .selection-mode-button {
   padding: 10px 20px;
   font-size: 16px;
@@ -106,5 +105,26 @@ body.dark-mode {
   color: #ffffff;
 }
 
+.delete-selected-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  display: block; /* Altere conforme necessário para ajustar a posição */
+}
 
+.delete-selected-button:hover {
+  background-color: #c82333;
+}
 
+.no-patients-message {
+  text-align: center;
+  font-size: 18px;
+  color: #666;
+  margin-top: 20px;
+}

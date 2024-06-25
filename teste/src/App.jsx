@@ -105,6 +105,10 @@ const App = () => {
     setShowConfirmModal(false);
   };
 
+  const toggleSelectionMode = () => {
+    setIsSelectionMode(!isSelectionMode);
+  };
+
   return (
     <div className="app">
       <Routes>
@@ -117,27 +121,31 @@ const App = () => {
               <div className="main-content">
                 <Sidebar />
                 <div className="content">
-                  <SearchBar setSearchTerm={setSearchTerm} />
+                  <SearchBar
+                    setSearchTerm={setSearchTerm}
+                    isSelectionMode={isSelectionMode}
+                    toggleSelectionMode={toggleSelectionMode}
+                  />
                   <Routes>
                     <Route
                       path="/"
                       element={
                         <>
-                          <div className="filters">
-                            <button
-                              className={`selection-mode-button ${isSelectionMode ? 'active' : ''}`}
-                              onClick={() => setIsSelectionMode(!isSelectionMode)}
-                            >
-                              {isSelectionMode ? 'Cancel' : 'Selection Mode'}
-                            </button>
-                          </div>
-                          <PatientsList
-                            patients={filteredPatients}
-                            isSelectionMode={isSelectionMode}
-                            selectedIds={selectedIds}
-                            setSelectedIds={setSelectedIds}
-                            onDeleteSelected={handleDeleteSelected}
-                          />
+                          {patients.length === 0 ? (
+                            <p className="no-patients-message">Nenhum paciente adicionado</p>
+                          ) : (
+                            <>
+                              {isSelectionMode && (
+                                <button onClick={handleDeleteSelected} className="delete-selected-button">Delete Selected</button>
+                              )}
+                              <PatientsList
+                                patients={filteredPatients}
+                                isSelectionMode={isSelectionMode}
+                                selectedIds={selectedIds}
+                                setSelectedIds={setSelectedIds}
+                              />
+                            </>
+                          )}
                         </>
                       }
                     />
