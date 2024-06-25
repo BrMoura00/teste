@@ -7,10 +7,10 @@ const PatientDetail = ({ patients, updatePatient, deletePatient }) => {
   const { id } = useParams();
   const navigate = useNavigate();
   const patient = patients.find((patient) => patient.id === parseInt(id));
-  const [selectedExamId, setSelectedExamId] = useState(null);
 
   const [isEditing, setIsEditing] = useState(false);
   const [showConfirmModal, setShowConfirmModal] = useState(false);
+  const [selectedExamId, setSelectedExamId] = useState(null);
 
   if (!patient) {
     return <div>Paciente não encontrado</div>;
@@ -96,7 +96,9 @@ const PatientDetail = ({ patients, updatePatient, deletePatient }) => {
         <>
           <h2>Detalhes do Paciente</h2>
           <div className="patient-detail-view">
-            <img src={patient.image} alt={patient.name} className="patient-image-preview" />
+            <div className="image-container">
+              <img src={patient.image} alt={patient.name} className="patient-image-preview" />
+            </div>
             <h3>{patient.name}</h3>
             <p><strong>Idade:</strong> {patient.age}</p>
             <p><strong>Gênero:</strong> {patient.gender}</p>
@@ -105,7 +107,7 @@ const PatientDetail = ({ patients, updatePatient, deletePatient }) => {
             <h3>Exames</h3>
             {patient.exams && patient.exams.length > 0 ? (
               <div>
-                <select onChange={(e) => setSelectedExamId(e.target.value)} value={selectedExamId}>
+                <select onChange={(e) => setSelectedExamId(e.target.value)} value={selectedExamId || ''}>
                   <option value="" disabled>Selecione um Exame</option>
                   {patient.exams.map(exam => (
                     <option key={exam.id} value={exam.id}>

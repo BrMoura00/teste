@@ -22,7 +22,9 @@ const PatientCard = ({ patient, isSelected, onSelect, isSelectionMode }) => {
           onClick={(e) => e.stopPropagation()}
         />
       )}
-      <img src={patient.image} alt={patient.name} />
+      <div className="patient-image-container">
+        <img src={patient.image} alt={patient.name} className="patient-image" />
+      </div>
       <h3>{patient.name}</h3>
       <p>Age: {patient.age}</p>
       <p>Gender: {patient.gender}</p>

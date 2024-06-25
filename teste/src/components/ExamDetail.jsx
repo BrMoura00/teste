@@ -1,102 +1,97 @@
 import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import './ExamDetail.css';
 
 const ExamDetail = ({ patients }) => {
   const { patientId, examId } = useParams();
   const navigate = useNavigate();
   const patient = patients.find((patient) => patient.id === parseInt(patientId));
-  const exam = patient.exams.find((exam) => exam.id === parseInt(examId));
 
-  const [comparisonExamId, setComparisonExamId] = useState(null);
+  if (!patient) {
+    return <div>Paciente não encontrado</div>;
+  }
 
-  if (!patient || !exam) {
+  const [selectedExamId, setSelectedExamId] = useState(examId);
+  const exam = patient.exams.find((exam) => exam.id === parseInt(selectedExamId));
+
+  if (!exam) {
     return <div>Exame não encontrado</div>;
   }
 
-  const comparisonExam = comparisonExamId
-    ? patient.exams.find((exam) => exam.id === parseInt(comparisonExamId))
-    : null;
+  const handleExamChange = (e) => {
+    setSelectedExamId(e.target.value);
+  };
 
-  const renderComparison = (field) => {
-    if (comparisonExam) {
-      return (
-        <>
-          <p><strong>{field} Atual:</strong> {exam[field]}</p>
-          <p><strong>{field} Comparação:</strong> {comparisonExam[field]}</p>
-        </>
-      );
-    } else {
-      return <p><strong>{field}:</strong> {exam[field]}</p>;
-    }
+  const renderDetail = (field, label) => {
+    return (
+      <p><strong>{label}:</strong> {exam[field]}</p>
+    );
   };
 
   return (
     <div className="form-container">
       <h2>Detalhes do Exame</h2>
       <div className="exam-detail-view">
-        <h3>{exam.name}</h3>
-        <div>
-          <label>Selecionar Exame para Comparação:</label>
-          <select onChange={(e) => setComparisonExamId(e.target.value)} value={comparisonExamId}>
-            <option value="" disabled>Selecione um exame</option>
-            {patient.exams.filter(e => e.id !== exam.id).map(e => (
+        <div className="select-exam">
+          <label>Selecionar Exame:</label>
+          <select onChange={handleExamChange} value={selectedExamId}>
+            {patient.exams.map(e => (
               <option key={e.id} value={e.id}>
                 {e.examType} - {e.date}
               </option>
             ))}
           </select>
         </div>
-        <div>
-          {renderComparison('anamnesis')}
-          {renderComparison('meemsTest')}
-          {renderComparison('medications')}
-          {renderComparison('diseaseHistory')}
-          {renderComparison('paSitting')}
-          {renderComparison('paOrthostasis')}
-          {renderComparison('fc')}
-          {renderComparison('fr')}
-          {renderComparison('inspection')}
-          {renderComparison('palpation')}
-          {renderComparison('proprioceptionAssessment')}
-          {exam.physicalExam.map((sheet, sheetIndex) => (
-            <div key={sheetIndex} className="physical-exam-sheet">
-              <h4>{sheet.name}</h4>
-              {sheet.rows.map((row, rowIndex) => (
-                <div key={rowIndex} className="physical-exam-row">
-                  <p><strong>Articulação:</strong> {row.joint}</p>
-                  <p><strong>Movimento:</strong> {row.movement}</p>
-                  <p><strong>Direito:</strong> {row.right}</p>
-                  <p><strong>Esquerdo:</strong> {row.left}</p>
-                </div>
-              ))}
-            </div>
-          ))}
-          {renderComparison('muscleLength')}
-          {renderComparison('muscleStrength')}
-          {renderComparison('vestibularSystem')}
-          {renderComparison('tugTask1')}
-          {renderComparison('pomaBalance')}
-          {renderComparison('pomaGait')}
-          {renderComparison('pomaTotal')}
-          {renderComparison('singleLegStanceRight')}
-          {renderComparison('singleLegStanceLeft')}
-          {renderComparison('tandemWalk')}
-          {renderComparison('balanceObservation')}
-          {renderComparison('lawtonScale')}
-          {renderComparison('barthelIndex')}
-          {renderComparison('functionalityObservation')}
-          {renderComparison('gaitObservation')}
-          {renderComparison('gaitAid')}
-          {renderComparison('gaitSpeed')}
-          {renderComparison('stepLengthRight')}
-          {renderComparison('stepLengthLeft')}
-          {renderComparison('posturalAssessment')}
-          {renderComparison('additionalAssessments')}
-          {renderComparison('physiotherapyDiagnosis')}
-          {renderComparison('prognosis')}
-          {renderComparison('treatmentGoals')}
-          {renderComparison('treatmentProgram')}
-        </div>
+        <h3>{exam.name}</h3>
+        {renderDetail('anamnesis', 'Anamnese')}
+        {renderDetail('meemsTest', 'Teste MEEM')}
+        {renderDetail('medications', 'Medicamentos')}
+        {renderDetail('diseaseHistory', 'Histórico de Doenças')}
+        {renderDetail('paSitting', 'PA Sentado')}
+        {renderDetail('paOrthostasis', 'PA Ortostatismo')}
+        {renderDetail('fc', 'FC')}
+        {renderDetail('fr', 'FR')}
+        {renderDetail('inspection', 'Inspeção')}
+        {renderDetail('palpation', 'Palpação')}
+        {renderDetail('proprioceptionAssessment', 'Avaliação da Propriocepção')}
+        {exam.physicalExam && exam.physicalExam.map((sheet, sheetIndex) => (
+          <div key={sheetIndex} className="physical-exam-sheet">
+            <h4>{sheet.name}</h4>
+            {sheet.rows.map((row, rowIndex) => (
+              <div key={rowIndex} className="physical-exam-row">
+                <p><strong>Articulação:</strong> {row.joint}</p>
+                <p><strong>Movimento:</strong> {row.movement}</p>
+                <p><strong>Direito:</strong> {row.right}</p>
+                <p><strong>Esquerdo:</strong> {row.left}</p>
+              </div>
+            ))}
+          </div>
+        ))}
+        {renderDetail('muscleLength', 'Comprimento Muscular')}
+        {renderDetail('muscleStrength', 'Força Muscular')}
+        {renderDetail('vestibularSystem', 'Sistema Vestibular')}
+        {renderDetail('tugTask1', 'TUG Task 1')}
+        {renderDetail('pomaBalance', 'POMA Balance')}
+        {renderDetail('pomaGait', 'POMA Gait')}
+        {renderDetail('pomaTotal', 'POMA Total')}
+        {renderDetail('singleLegStanceRight', 'Apoio Unilateral Direito')}
+        {renderDetail('singleLegStanceLeft', 'Apoio Unilateral Esquerdo')}
+        {renderDetail('tandemWalk', 'Caminhada Tandem')}
+        {renderDetail('balanceObservation', 'Observação do Equilíbrio')}
+        {renderDetail('lawtonScale', 'Escala de Lawton')}
+        {renderDetail('barthelIndex', 'Índice de Barthel')}
+        {renderDetail('functionalityObservation', 'Observação da Funcionalidade')}
+        {renderDetail('gaitObservation', 'Observação da Marcha')}
+        {renderDetail('gaitAid', 'Auxílio de Marcha')}
+        {renderDetail('gaitSpeed', 'Velocidade da Marcha')}
+        {renderDetail('stepLengthRight', 'Comprimento do Passo Direito')}
+        {renderDetail('stepLengthLeft', 'Comprimento do Passo Esquerdo')}
+        {renderDetail('posturalAssessment', 'Avaliação Postural')}
+        {renderDetail('additionalAssessments', 'Avaliações Adicionais')}
+        {renderDetail('physiotherapyDiagnosis', 'Diagnóstico Fisioterapêutico')}
+        {renderDetail('prognosis', 'Prognóstico')}
+        {renderDetail('treatmentGoals', 'Objetivos do Tratamento')}
+        {renderDetail('treatmentProgram', 'Programa de Tratamento')}
       </div>
       <button onClick={() => navigate(-1)} className="back-button">Voltar</button>
     </div>

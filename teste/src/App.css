@@ -3,7 +3,7 @@
 }
 
 .main-content {
-  margin-left: 60px; /* Ajuste conforme a largura da barra lateral */
+  margin-left: 60px; 
   flex: 1;
   padding: 20px;
 }
@@ -51,12 +51,18 @@
   transform: translateY(-5px);
 }
 
-.patient-card img {
+.patient-image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.patient-image {
   border-radius: 50%;
   width: 100px;
   height: 100px;
   object-fit: cover;
-  margin-bottom: 10px;
 }
 
 .patient-card h3 {
@@ -95,5 +101,10 @@
   background-color: #c82333;
 }
 
+body.dark-mode {
+  background-color: #121212;
+  color: #ffffff;
+}
 
-/* fazer estilo para a header */
+
+

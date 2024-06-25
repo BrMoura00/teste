@@ -1,0 +1,56 @@
+.form-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .exam-detail-view {
+    margin-top: 20px;
+  }
+  
+  .select-exam {
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .select-exam label {
+    margin-right: 10px;
+  }
+  
+  .exam-detail-view h3 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .physical-exam-sheet {
+    margin-top: 20px;
+  }
+  
+  .physical-exam-row {
+    background: #f0f0f0;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+  }
+  
+  .back-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .back-button:hover {
+    background-color: #0056b3;
+  }
+  
